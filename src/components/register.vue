@@ -3,7 +3,7 @@
     <!-- component -->
     <!-- Create by joker banny -->
     <div class="">
-      <div class="max-w-screen-sm mx-auto mt-10">
+      <div class="max-w-screen-sm mx-auto px-5 mt-10">
         <form class="bg-white w-full p-10 rounded-lg shadow-lg">
           <lottie-player
             src="https://assets10.lottiefiles.com/packages/lf20_0mohmgca.json"
