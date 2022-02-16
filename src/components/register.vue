@@ -5,9 +5,15 @@
     <div class="">
       <div class="max-w-screen-sm mx-auto mt-10">
         <form class="bg-white w-full p-10 rounded-lg shadow-lg">
-          <h1 class="text-center text-2xl mb-6 text-gray-600 font-bold font-sans">
-            Formregister
-          </h1>
+          <lottie-player
+            src="https://assets10.lottiefiles.com/packages/lf20_0mohmgca.json"
+            background="transparent"
+            speed="1"
+            class="w-64 mx-auto"
+            loop
+            autoplay
+          ></lottie-player>
+          <h1 class="text-center text-2xl mb-6 text-gray-900 font-bold">Register</h1>
           <div>
             <label class="text-gray-800 font-semibold block my-3 text-md" for="username"
               >Username</label
@@ -64,7 +70,7 @@
           </button>
           <button
             type="submit"
-            class="w-full mt-6 mb-3 bg-indigo-100 rounded-lg px-4 py-2 text-lg text-gray-800 tracking-wide font-semibold"
+            class="w-full mt-6 mb-3 hidden bg-indigo-100 rounded-lg px-4 py-2 text-lg text-gray-800 tracking-wide font-semibold"
           >
             Login
           </button>
