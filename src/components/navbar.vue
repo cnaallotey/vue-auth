@@ -7,17 +7,27 @@
             <p class="text-white font-extrabold text-2xl font-serif">UX GEEK</p>
           </router-link>
           <div class="space-x-2">
-            <router-link
-              to="/login"
-              class="text-base font-medium px-5 py-3 text-sky-500 bg-transparent"
-              >Login</router-link
+            <div class="flex items-center space-x-2" v-if="!$store.state.user">
+              <router-link
+                to="/login"
+                class="text-base font-medium px-5 py-3 text-sky-500 bg-transparent"
+                >Login</router-link
+              >
+              <router-link
+                to="/register"
+                class="text-base font-medium px-5 py-3 bg-sky-500 text-white shadow-lg hover:shadow-xl hover:bg-sky-600 rounded-lg"
+                >Register
+              </router-link>
+            </div>
+            <button
+              v-if="$route.name === 'Dashboard'"
+              @click="$store.dispatch('logout')"
+              class="text-base font-medium px-5 py-3 text-white shadow-lg hover:shadow-xl hover:bg-sky-600 hover:bg-opacity-10 rounded-lg"
             >
+              Logout
+            </button>
             <router-link
-              to="/register"
-              class="text-base font-medium px-5 py-3 bg-sky-500 text-white shadow-lg hover:shadow-xl hover:bg-sky-600 rounded-lg"
-              >Register
-            </router-link>
-            <router-link
+              v-if="$store.state.user"
               to="/dashboard"
               class="text-base font-medium px-5 py-3 bg-sky-500 text-white shadow-lg hover:shadow-xl hover:bg-sky-600 rounded-lg"
               >DashBoard
@@ -28,3 +38,18 @@
     </div>
   </div>
 </template>
+
+<script>
+import { useStore } from "vuex";
+import { onBeforeMount } from "vue";
+
+export default {
+  setup() {
+    const store = useStore();
+
+    onBeforeMount(() => {
+      store.dispatch("fetchUser");
+    });
+  },
+};
+</script>

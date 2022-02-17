@@ -28,6 +28,19 @@ const router = createRouter({
     ]
 })
 
+// router.beforeEach((to, from, next) => {
+//     if (to.path === '/login' && !auth.currentUser) {
+//         next('/dashboard')
+//         return
+//     }
+//     if (to.matched.some(record => record.meta.requiresAuth) && !auth.currentUser) {
+//         next('/login')
+//         return
+//     }
+//    // next()
+// })
+
+
 createApp(App).use(router).use(store).mount('#app')
 
 

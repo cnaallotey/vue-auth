@@ -66,6 +66,7 @@
 <script>
 import { ref } from "@vue/reactivity";
 import { useStore } from "vuex";
+import { auth } from '../firebase/auth.js'
 export default {
   setup() {
     const register_form = ref({});
@@ -76,6 +77,11 @@ export default {
     };
 
     return { register_form, register };
+  },
+  created() {
+    if (auth.currentUser) {
+      router.push("/dashboard");
+    }
   },
 };
 </script>

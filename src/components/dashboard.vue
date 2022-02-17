@@ -1,3 +1,4 @@
+import { onBeforeMount } from 'vue';
 <template>
   <div>
     <!-- This example requires Tailwind CSS v2.0+ -->
@@ -320,11 +321,20 @@
 </template>
 
 <script>
+import { useStore } from "vuex";
+import router from "../main.js";
+import { auth } from "../firebase/auth";
+
 export default {
   data() {
     return {
       dropdown: false,
     };
+  },
+  created() {
+    if (!auth.currentUser) {
+      router.push("/login");
+    }
   },
 };
 </script>

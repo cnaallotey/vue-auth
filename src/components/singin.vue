@@ -132,6 +132,8 @@
 <script>
 import { ref } from "@vue/reactivity";
 import { useStore } from "vuex";
+import { auth } from "../firebase/auth.js";
+
 export default {
   setup() {
     const login_form = ref({});
@@ -142,6 +144,11 @@ export default {
     };
 
     return { login_form, login };
+  },
+  beforeMount() {
+    if (auth.currentUser) {
+      router.push("/dashboard");
+    }
   },
 };
 </script>
