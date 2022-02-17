@@ -4,7 +4,10 @@
     <!-- Create by joker banny -->
     <div class="">
       <div class="max-w-screen-sm mx-auto px-5 mt-10">
-        <form class="bg-white w-full p-10 rounded-lg shadow-lg">
+        <form
+          class="bg-white w-full p-10 rounded-lg shadow-lg"
+          @submit.prevent="register"
+        >
           <lottie-player
             src="https://assets10.lottiefiles.com/packages/lf20_0mohmgca.json"
             background="transparent"
@@ -14,18 +17,7 @@
             autoplay
           ></lottie-player>
           <h1 class="text-center text-2xl mb-6 text-gray-900 font-bold">Register</h1>
-          <div>
-            <label class="text-gray-800 font-semibold block my-3 text-md" for="username"
-              >Username</label
-            >
-            <input
-              class="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none"
-              type="text"
-              name="username"
-              id="username"
-              placeholder="username"
-            />
-          </div>
+
           <div>
             <label class="text-gray-800 font-semibold block my-3 text-md" for="email"
               >Email</label
@@ -36,6 +28,7 @@
               name="email"
               id="email"
               placeholder="@email"
+              v-model="register_form.email"
             />
           </div>
           <div>
@@ -48,20 +41,10 @@
               name="password"
               id="password"
               placeholder="password"
+              v-model="register_form.password"
             />
           </div>
-          <div>
-            <label class="text-gray-800 font-semibold block my-3 text-md" for="confirm"
-              >Confirm password</label
-            >
-            <input
-              class="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none"
-              type="text"
-              name="confirm"
-              id="confirm"
-              placeholder="confirm password"
-            />
-          </div>
+
           <button
             type="submit"
             class="w-full mt-6 bg-indigo-600 rounded-lg px-4 py-2 text-lg text-white tracking-wide font-semibold"
@@ -79,3 +62,20 @@
     </div>
   </div>
 </template>
+
+<script>
+import { ref } from "@vue/reactivity";
+import { useStore } from "vuex";
+export default {
+  setup() {
+    const register_form = ref({});
+    const store = useStore();
+
+    const register = () => {
+      store.dispatch("register", register_form.value);
+    };
+
+    return { register_form, register };
+  },
+};
+</script>

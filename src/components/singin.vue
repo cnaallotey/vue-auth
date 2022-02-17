@@ -48,7 +48,7 @@
             </router-link>
           </p>
         </div>
-        <form class="mt-8 space-y-6" action="#" method="POST">
+        <form class="mt-8 space-y-6" action="#" method="POST" @submit.prevent="login">
           <input type="hidden" name="remember" value="true" />
           <div class="rounded-md shadow-sm -space-y-px">
             <div>
@@ -61,6 +61,7 @@
                 required
                 class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Email address"
+                v-model="login_form.email"
               />
             </div>
             <div>
@@ -73,6 +74,7 @@
                 required
                 class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Password"
+                v-model="login_form.password"
               />
             </div>
           </div>
@@ -126,3 +128,20 @@
     </div>
   </div>
 </template>
+
+<script>
+import { ref } from "@vue/reactivity";
+import { useStore } from "vuex";
+export default {
+  setup() {
+    const login_form = ref({});
+    const store = useStore();
+
+    const login = () => {
+      store.dispatch("login", login_form.value);
+    };
+
+    return { login_form, login };
+  },
+};
+</script>
