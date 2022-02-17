@@ -1,5 +1,5 @@
 <template>
-  <div class="h-screen bg-slate-900">
+  <div class="lg:h-screen bg-slate-900">
     <navbar />
     <router-view />
   </div>
