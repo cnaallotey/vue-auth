@@ -17,6 +17,11 @@
               class="text-base font-medium px-5 py-3 bg-sky-500 text-white shadow-lg hover:shadow-xl hover:bg-sky-600 rounded-lg"
               >Register
             </router-link>
+            <router-link
+              to="/dashboard"
+              class="text-base font-medium px-5 py-3 bg-sky-500 text-white shadow-lg hover:shadow-xl hover:bg-sky-600 rounded-lg"
+              >DashBoard
+            </router-link>
           </div>
         </div>
       </div>
