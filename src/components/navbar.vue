@@ -4,7 +4,7 @@
       <div class="max-w-screen-xl pt-7 pb-5 mx-auto px-5 xl:px-0">
         <div class="w-full flex justify-between items-center">
           <router-link to="/" class="cursor-pointer select-none">
-            <p class="text-white font-extrabold text-2xl font-serif">UX GEEK</p>
+            <p class="text-white font-extrabold text-2xl">UX GEEK</p>
           </router-link>
           <div class="space-x-2">
             <div class="flex items-center space-x-2" v-if="!$store.state.user">
