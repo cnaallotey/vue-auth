@@ -4,7 +4,7 @@
   >
     <div class="max-w-screen-xl mx-auto py-32 lg:py-40">
       <div class="flex flex-col lg:items-center lg:flex-row lg:space-x-20">
-        <div class="w-full hidden lg:block relative lg:w-1/2 overflow-hidden">
+        <div class="w-full lg:block relative lg:w-1/2 overflow-hidden">
           <lottie-player
             src="https://assets7.lottiefiles.com/packages/lf20_rk5aunh5.json"
             class="w-full rotate-45"
