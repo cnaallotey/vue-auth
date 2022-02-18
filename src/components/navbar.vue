@@ -27,7 +27,7 @@
               Logout
             </button>
             <router-link
-              v-if="$store.state.user"
+              v-if="$store.state.user && $route.name === 'Home'"
               to="/dashboard"
               class="text-base font-medium px-5 py-3 bg-sky-500 text-white shadow-lg hover:shadow-xl hover:bg-sky-600 rounded-lg"
               >DashBoard
@@ -42,6 +42,7 @@
 <script>
 import { useStore } from "vuex";
 import { onBeforeMount } from "vue";
+import router from "../main";
 
 export default {
   setup() {
@@ -51,5 +52,6 @@ export default {
       store.dispatch("fetchUser");
     });
   },
+  computed: {},
 };
 </script>
