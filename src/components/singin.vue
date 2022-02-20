@@ -133,6 +133,8 @@
 import { ref } from "@vue/reactivity";
 import { useStore } from "vuex";
 import { auth } from "../firebase/auth.js";
+import { onBeforeMount } from "@vue/runtime-core";
+import router from "../main.js";
 
 export default {
   setup() {
@@ -143,12 +145,14 @@ export default {
       store.dispatch("login", login_form.value);
     };
 
+    onBeforeMount(() => {
+      if (auth.currentUser) {
+        router.push("/dashboard");
+        return;
+      }
+    });
+
     return { login_form, login };
-  },
-  beforeMount() {
-    if (auth.currentUser) {
-      router.push("/dashboard");
-    }
   },
 };
 </script>

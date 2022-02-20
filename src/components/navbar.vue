@@ -7,7 +7,10 @@
             <p class="text-white font-extrabold text-2xl">UX GEEK</p>
           </router-link>
           <div class="space-x-2">
-            <div class="flex items-center space-x-2" v-if="!$store.state.user">
+            <div
+              class="flex items-center space-x-2"
+              v-if="!$store.state.user && $route.name === 'Home'"
+            >
               <router-link
                 to="/login"
                 class="text-base font-medium px-5 py-3 text-sky-500 bg-transparent"

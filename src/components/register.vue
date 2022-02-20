@@ -2,12 +2,10 @@
   <div>
     <!-- component -->
     <!-- Create by joker banny -->
-    <div class="">
-      <div class="max-w-screen-sm mx-auto px-5 mt-10">
-        <form
-          class="bg-white w-full p-10 rounded-lg shadow-lg"
-          @submit.prevent="register"
-        >
+
+    <div class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <div class="max-w-md w-full bg-white p-8 space-y-8 rounded-2xl">
+        <div>
           <lottie-player
             src="https://assets10.lottiefiles.com/packages/lf20_0mohmgca.json"
             background="transparent"
@@ -16,47 +14,94 @@
             loop
             autoplay
           ></lottie-player>
-          <h1 class="text-center text-2xl mb-6 text-gray-900 font-bold">Register</h1>
+          <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+            Register for free today
+          </h2>
+          <p class="mt-2 text-center text-sm text-gray-600">
+            Or
+            <router-link
+              to="/login"
+              class="font-medium text-indigo-600 hover:text-indigo-500"
+            >
+              Already have an account? Sign In.
+            </router-link>
+          </p>
+        </div>
+        <form class="mt-8 space-y-6" action="#" method="POST" @submit.prevent="register">
+          <input type="hidden" name="remember" value="true" />
+          <div class="rounded-md shadow-sm -space-y-px">
+            <div>
+              <label for="email-address" class="sr-only">Email address</label>
+              <input
+                id="email-address"
+                name="email"
+                type="email"
+                autocomplete="email"
+                required
+                class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                placeholder="Email address"
+                v-model="register_form.email"
+              />
+            </div>
+            <div>
+              <label for="password" class="sr-only">Password</label>
+              <input
+                id="password"
+                name="password"
+                type="password"
+                autocomplete="current-password"
+                required
+                class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                placeholder="Password"
+                v-model="register_form.password"
+              />
+            </div>
+          </div>
+
+          <div class="hidden items-center justify-between">
+            <div class="flex items-center">
+              <input
+                id="remember-me"
+                name="remember-me"
+                type="checkbox"
+                class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+              />
+              <label for="remember-me" class="ml-2 block text-sm text-gray-900">
+                Remember me
+              </label>
+            </div>
+
+            <div class="text-sm">
+              <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">
+                Forgot your password?
+              </a>
+            </div>
+          </div>
 
           <div>
-            <label class="text-gray-800 font-semibold block my-3 text-md" for="email"
-              >Email</label
+            <button
+              type="submit"
+              class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
-            <input
-              class="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none"
-              type="text"
-              name="email"
-              id="email"
-              placeholder="@email"
-              v-model="register_form.email"
-            />
+              <span class="absolute left-0 inset-y-0 flex hidden items-center pl-3">
+                <!-- Heroicon name: solid/lock-closed -->
+                <svg
+                  class="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </span>
+              Register
+            </button>
           </div>
-          <div>
-            <label class="text-gray-800 font-semibold block my-3 text-md" for="password"
-              >Password</label
-            >
-            <input
-              class="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none"
-              type="text"
-              name="password"
-              id="password"
-              placeholder="password"
-              v-model="register_form.password"
-            />
-          </div>
-
-          <button
-            type="submit"
-            class="w-full mt-6 bg-indigo-600 rounded-lg px-4 py-2 text-lg text-white tracking-wide font-semibold"
-          >
-            Register
-          </button>
-          <button
-            type="submit"
-            class="w-full mt-6 mb-3 hidden bg-indigo-100 rounded-lg px-4 py-2 text-lg text-gray-800 tracking-wide font-semibold"
-          >
-            Login
-          </button>
         </form>
       </div>
     </div>
@@ -66,7 +111,9 @@
 <script>
 import { ref } from "@vue/reactivity";
 import { useStore } from "vuex";
-import { auth } from '../firebase/auth.js'
+import { auth } from "../firebase/auth.js";
+import { onBeforeMount } from "vue";
+import router from "../main.js";
 export default {
   setup() {
     const register_form = ref({});
@@ -77,11 +124,6 @@ export default {
     };
 
     return { register_form, register };
-  },
-  created() {
-    if (auth.currentUser) {
-      router.push("/dashboard");
-    }
   },
 };
 </script>
